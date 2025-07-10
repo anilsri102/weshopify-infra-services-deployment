@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: weshopify-cache-svc
+  name: weshopify-cache-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weshopify-cache-svc
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: weshopify-cache-svc
+    spec:
+      containers:
+        - args:
+            - redis-server
+            - --save
+            - "20"
+            - "1"
+            - --loglevel
+            - warning
+            - --requirepass
+            - eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+          image: redis:latest
+          name: weshopify-cache
+          ports:
+            - containerPort: 6379
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: weshopify-zipkin-service
+  name: weshopify-zipkin-service
+spec:
+  replicas: 1
+  selector: 
+   matchLabels: 
+    app: weshopify-zipkin-service
+  template: 
+    metadata:
+     labels:
+      app: weshopify-zipkin-service
+    spec:  
+      containers:
+          - image: openzipkin/zipkin
+            name: zipkin
+            ports:
+              - containerPort: 9411
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weshopify-registry-svc
+  labels:
+    app: weshopify-registry-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weshopify-registry-svc
+  template:
+    metadata:
+      labels:
+        app: weshopify-registry-svc
+    spec:
+      containers:
+      - name: weshopify-registry-svc
+        image: narsimybooks/weshopify-service-registry-img:latest
+        ports:
+        - containerPort: 8761
+        env:
+          - name: EUREKA_HOST
+            value: weshopify-registry-svc

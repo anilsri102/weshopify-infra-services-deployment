@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: weshopify-axon-server
+  name: weshopify-axon-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weshopify-axon-server
+  strategy: {}
+  template:
+    metadata:
+      labels:
+       app: weshopify-axon-server
+    spec:
+      containers:
+        - image: axoniq/axonserver
+          name: weshopify-event-store
+          ports:
+            - containerPort: 8124
+            - containerPort: 8024
+          resources: {}
+      restartPolicy: Always
+status: {}

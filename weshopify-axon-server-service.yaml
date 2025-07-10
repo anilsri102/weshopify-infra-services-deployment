@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: weshopify-axon-server
+  name: weshopify-axon-server
+spec:
+  type: NodePort
+  ports:
+    - name: "8124"
+      port: 8124
+      targetPort: 8124
+    - name: "8024"
+      port: 8024
+      targetPort: 8024
+  selector:
+    app: weshopify-axon-server
+status:
+  loadBalancer: {}

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: weshopify-gateway-svc
+  name: weshopify-gateway-svc
+spec:
+  type: NodePort
+  ports:
+    - name: "5012"
+      port: 5012
+      targetPort: 5012
+  selector:
+    app: weshopify-gateway-svc
+status:
+  loadBalancer: {}

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: weshopify-gateway-svc
+  name: weshopify-gateway-svc
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: weshopify-gateway-svc
+  template: 
+    metadata: 
+      labels: 
+       app: weshopify-gateway-svc
+    spec:   
+      containers:
+        - image: narsimybooks/weshopify-gateway-svc-img:latest
+          name:  weshopify-gateway-svc
+          ports: 
+           - containerPort: 5012
+          env:
+            - name: SERVICE_REGISTRY_HOST
+              value: weshopify-registry-svc
+            - name: SERVICE_REGISTRY_PORT
+              value: "8761"
+      restartPolicy: Always

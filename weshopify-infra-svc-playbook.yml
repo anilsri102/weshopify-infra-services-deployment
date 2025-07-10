@@ -1,0 +1,19 @@
+- name: weshopify-api-gateway-playbook
+  hosts: k8s-master
+  become: 'yes'
+  become_user: k8s-admin
+  tasks:
+   - name: create a app-directory
+     shell: mkdir infra-svc-dir && chmod 777 infra-svc-dir
+
+   - name: copy the manifest files from ansible to k8s-master
+     copy: src=/opt/weshopify-infra-svc-deploy  dest=infra-svc-dir
+     
+   - name: remove ansible-playbook.yml
+     shell: echo admin | sudo -S rm -f /home/k8s-admin/infra-svc-dir/weshopify-infra-svc-deploy/weshopify-infra-svc-playbook.yml
+
+   - name: execute the manifest files on k8s-master
+     shell: echo admin | sudo -S kubectl apply -f /home/k8s-admin/infra-svc-dir/weshopify-infra-svc-deploy
+
+   #- name: remove the infra-svc-dir
+    # shell: rm -rf infra-svc-dir
