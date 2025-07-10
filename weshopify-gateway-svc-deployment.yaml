@@ -15,7 +15,7 @@ spec:
        app: weshopify-gateway-svc
     spec:   
       containers:
-        - image: narsimybooks/weshopify-gateway-svc-img:latest
+        - image: agulimi/weshopify-gateway-svc-img:latest
           name:  weshopify-gateway-svc
           ports: 
            - containerPort: 5012
