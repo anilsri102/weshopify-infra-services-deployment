@@ -7,7 +7,7 @@ pipeline{
             steps{
                 echo "========Pull the Infra Services Manifest files From SCM========"
                 git branch: 'master',
-                    url: 'https://github.com/Narsi-Myteaching/weshopify-infra-services-deployment.git'
+                    url: 'https://github.com/anilsri102/weshopify-infra-services-deployment.git'
                 echo "========Pull the Infra Services Manifest files From SCM completed========"
             }
         }
@@ -15,9 +15,9 @@ pipeline{
             steps{
                 echo "Connecting to Ansible Server"
                 sshagent(['ANSIBLE_SERVER']){
-                    sh 'scp * ansible-admin@172.31.7.122:/opt/weshopify-infra-svc-deploy'
+                    sh 'scp * ansible-admin@172.31.0.106:/opt/weshopify-infra-svc-deploy'
                     sh '''
-                        ssh -tt ansible-admin@172.31.7.122 << EOF
+                        ssh -tt ansible-admin@172.31.0.106 << EOF
                             ansible-playbook /opt/weshopify-infra-svc-deploy/weshopify-infra-svc-playbook.yml
                             exit
                         EOF
