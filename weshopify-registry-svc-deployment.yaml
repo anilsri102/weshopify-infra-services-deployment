@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: weshopify-registry-svc
-        image: narsimybooks/weshopify-service-registry-img:latest
+        image: agulimi/weshopify-service-registry-img:latest
         ports:
         - containerPort: 8761
         env:
